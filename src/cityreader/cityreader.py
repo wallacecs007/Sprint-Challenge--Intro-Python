@@ -31,10 +31,17 @@ def cityreader(cities=[]):
     # TODO Implement the functionality to read from the 'cities.csv' file
     # For each city record, create a new City instance and add it to the
     # `cities` list
-    with open("cities.csv", newline="") as csvfile:
+    with open("src\cityreader\cities.csv", newline="") as csvfile:
         cityreader = csv.reader(csvfile, delimiter=" ", quotechar='|')
-        for row in cityreader:
-            print(row)
+        for line in cityreader:
+            joined = ' '.join(line).split(',')
+            cityName = joined[0]
+            lat = joined[3]
+            lon = joined[4]
+
+            if cityName != "city":
+                city = City(cityName, lat, lon)
+                cities.append(city)
 
     return cities
 
@@ -43,7 +50,7 @@ cityreader(cities)
 
 # Print the list of cities (name, lat, lon), 1 record per line.
 for c in cities:
-    print(c)
+    print(c.name, c.lat, c.lon)
 
 # STRETCH GOAL!
 #
