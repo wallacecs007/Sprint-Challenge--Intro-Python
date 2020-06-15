@@ -40,7 +40,7 @@ def cityreader(cities=[]):
             lon = joined[4]
 
             if cityName != "city":
-                city = City(cityName, lat, lon)
+                city = City(cityName, float(lat), float(lon))
                 cities.append(city)
 
     return cities
